@@ -758,7 +758,10 @@ footer {
     font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.7);
 }
-
+.footer-bottom a{
+        color: rgba(255, 255, 255, 0.852);
+        text-decoration: none;
+}
 /* Mensaje cuando no hay resultados */
 .no-resultados {
     text-align: center;

@@ -145,7 +145,7 @@ nav ul li a:hover::after {
     transition: 0.3s;
 }
 
-/* Hero Section */
+/* Hero Section - MEJORADO */
 .hero {
     position: relative;
     overflow: hidden;
@@ -157,6 +157,7 @@ nav ul li a:hover::after {
     text-align: center;
     color: var(--color-blanco);
     margin-top: 70px;
+    padding: 0 20px;
 }
 
 .hero-video-container {
@@ -189,6 +190,7 @@ nav ul li a:hover::after {
     background: rgba(0, 0, 0, 0.4);
     z-index: 2;
 }
+
 .hero-video-fade {
     position: absolute;
     top: 0;
@@ -205,6 +207,9 @@ nav ul li a:hover::after {
 .hero-content {
     position: relative;
     z-index: 3;
+    max-width: 900px;
+    width: 100%;
+    padding: 0 20px;
 }
 
 .hero.loading::before {
@@ -230,13 +235,19 @@ nav ul li a:hover::after {
     font-size: 3.5rem;
     margin-bottom: 1.5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    line-height: 1.2;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-content p {
     font-size: 1.3rem;
     margin-bottom: 2.5rem;
     max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
     font-weight: 300;
+    line-height: 1.6;
 }
 
 .btn {
@@ -455,19 +466,19 @@ nav ul li a:hover::after {
 .nosotros-img {
     flex: 1;
     width: 100%;
-    max-width: 550px; /* Ancho máximo */
-    height: 450px; /* Altura fija */
+    max-width: 550px;
+    height: 450px;
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    margin: 0 auto; /* Centra el contenedor */
+    margin: 0 auto;
 }
 
 .nosotros-img img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Cubre todo el área manteniendo proporción */
-    object-position: center; /* Centra la imagen */
+    object-fit: cover;
+    object-position: center;
     border-radius: 10px;
     transition: opacity 0.5s ease-in-out;
 }
@@ -475,7 +486,6 @@ nav ul li a:hover::after {
 .nosotros-img img.loaded {
     animation: fadeInImage 0.6s ease-out;
 }
-
 /* Footer */
 footer {
     background-color: var(--color-verde-oscuro);
@@ -590,6 +600,10 @@ footer {
     font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.7);
 }
+.footer-bottom a{
+        color: rgba(255, 255, 255, 0.852);
+        text-decoration: none;
+}
 
 /* ========================================
    MODAL - ADAPTADO PARA IMÁGENES CON FONDO
@@ -653,7 +667,6 @@ footer {
     padding: 0;
 }
 
-/* Estilos específicos para el contenido del modal */
 .modal-producto {
     display: flex;
     flex-direction: column;
@@ -684,7 +697,6 @@ footer {
     flex-wrap: wrap;
 }
 
-/* NUEVO: Imagen del modal adaptada para fotos con fondo */
 .modal-producto-img {
     flex: 1;
     min-width: 300px;
@@ -818,7 +830,7 @@ footer {
     }
 }
 
-/* Preload de imágenes para evitar parpadeo */
+/* Preload de imágenes */
 body::after {
     content: '';
     position: absolute;
@@ -826,8 +838,6 @@ body::after {
     height: 0;
     overflow: hidden;
     z-index: -1;
-    
-    /* Precargar imágenes de nosotros */
     background-image: 
         url('../img/inicio/nosotros.jpeg'),
         url('../img/inicio/nosotros2.jpeg'),
@@ -840,7 +850,6 @@ body::after {
         url('../img/inicio/nosotros9.png'),
         url('../img/inicio/nosotros10.png'),
         url('../img/inicio/nosotros11.png'),
-
         url('../img/inicio/fondo.mp4'),
         url('../img/inicio/fondo1.mp4');
 }
@@ -849,7 +858,6 @@ body::after {
    RESPONSIVE
    ======================================== */
 
-/* Responsive para el logo y header */
 @media (max-width: 1024px) {
     header {
         height: 85px;
@@ -863,20 +871,36 @@ body::after {
     .logo p {
         font-size: 0.8rem;
     }
+    
+    .hero-content h2 {
+        font-size: 3rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.2rem;
+        max-width: 550px;
+    }
 }
 
 @media (max-width: 768px) {
     header {
         height: 105px;
     }
-        .nosotros-img {
+    
+    .nosotros-img {
         max-width: 100%;
-        height: 350px; /* Altura más pequeña en móvil */
+        height: 350px;
     }
 
-        .hero-video {
+    .hero {
+        height: 85vh;
+        padding: 0 15px;
+    }
+
+    .hero-video {
         object-position: center;
     }
+    
     header .container {
         padding: 0 1rem;
     }
@@ -946,12 +970,21 @@ body::after {
         display: flex;
     }
     
+    .hero-content {
+        padding: 0 15px;
+    }
+    
     .hero-content h2 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        line-height: 1.3;
+        margin-bottom: 1.2rem;
     }
     
     .hero-content p {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
+        max-width: 500px;
+        margin-bottom: 2rem;
+        line-height: 1.5;
     }
     
     .nosotros-content {
@@ -971,12 +1004,10 @@ body::after {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
     
-    /* Ajuste de altura de imagen de producto en móvil */
     .producto-img {
         height: 300px;
     }
     
-    /* Footer responsive */
     .footer-content {
         grid-template-columns: 1fr;
         gap: 2.5rem;
@@ -1070,7 +1101,6 @@ body::after {
         line-height: 1.6;
     }
     
-    /* Modal responsive */
     .modal-content {
         width: 95%;
         margin: 5% auto;
@@ -1105,9 +1135,11 @@ body::after {
     header {
         height: 90px;
     }
-        .nosotros-img {
-        height: 280px; /* Aún más pequeña en móviles pequeños */
+    
+    .nosotros-img {
+        height: 280px;
     }
+    
     .logo img {
         height: 95px;
         max-width: 150px;
@@ -1118,8 +1150,34 @@ body::after {
         font-size: 0.7rem;
     }
     
+    .hero {
+        height: 80vh;
+        padding: 0 10px;
+    }
+    
+    .hero-content {
+        padding: 0 10px;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.8rem;
+        line-height: 1.3;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.95rem;
+        max-width: 100%;
+        margin-bottom: 1.8rem;
+        line-height: 1.5;
+    }
+    
+    .btn {
+        padding: 0.9rem 2rem;
+        font-size: 0.95rem;
+    }
+    
     .producto-img {
         height: 280px;
     }
-    
 }
