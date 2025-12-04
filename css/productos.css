@@ -313,7 +313,7 @@ nav ul li a.active::after {
 
 .producto-card {
     display: grid;
-    grid-template-columns: 1fr 300px;
+    grid-template-columns: 1fr 370px;
     gap: 2.5rem;
     background: linear-gradient(135deg, var(--color-crema) 0%, rgba(241, 231, 213, 0.5) 100%);
     border-radius: 20px;

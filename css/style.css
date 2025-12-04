@@ -24,7 +24,10 @@ body {
     overflow-x: hidden;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
 }
@@ -38,6 +41,87 @@ h1, h2, h3, h4 {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+/* ========================================
+   LOADING SCREEN
+   ======================================== */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-blanco);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Modern spinner with dual rings */
+.loading-spinner {
+    position: relative;
+    width: 60px;
+    height: 60px;
+}
+
+.loading-spinner::before,
+.loading-spinner::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+
+/* Outer ring */
+.loading-spinner::before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 3px solid transparent;
+    border-top-color: var(--color-verde-oscuro);
+    border-right-color: var(--color-verde-oscuro);
+    animation: spinOuter 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+/* Inner ring */
+.loading-spinner::after {
+    top: 8px;
+    left: 8px;
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
+    border: 3px solid transparent;
+    border-top-color: var(--color-naranja);
+    border-left-color: var(--color-naranja);
+    animation: spinInner 0.8s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+@keyframes spinOuter {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spinInner {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+    }
 }
 
 /* Header con altura fija */
@@ -228,7 +312,9 @@ nav ul li a:hover::after {
 }
 
 @keyframes spin {
-    to { transform: translate(-50%, -50%) rotate(360deg); }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }
 
 .hero-content h2 {
@@ -486,6 +572,7 @@ nav ul li a:hover::after {
 .nosotros-img img.loaded {
     animation: fadeInImage 0.6s ease-out;
 }
+
 /* Footer */
 footer {
     background-color: var(--color-verde-oscuro);
@@ -600,9 +687,10 @@ footer {
     font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.7);
 }
-.footer-bottom a{
-        color: rgba(255, 255, 255, 0.852);
-        text-decoration: none;
+
+.footer-bottom a {
+    color: rgba(255, 255, 255, 0.852);
+    text-decoration: none;
 }
 
 /* ========================================
@@ -634,8 +722,15 @@ footer {
 }
 
 @keyframes modalFadeIn {
-    from {opacity: 0; transform: translateY(-50px);}
-    to {opacity: 1; transform: translateY(0);}
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .close-modal {
@@ -780,7 +875,8 @@ footer {
     flex-wrap: wrap;
 }
 
-.btn-comprar, .btn-whatsapp {
+.btn-comprar,
+.btn-whatsapp {
     flex: 1;
     min-width: 200px;
     padding: 1rem 1.5rem;
@@ -824,6 +920,7 @@ footer {
         opacity: 0;
         transform: scale(0.95);
     }
+
     to {
         opacity: 1;
         transform: scale(1);
@@ -838,7 +935,7 @@ body::after {
     height: 0;
     overflow: hidden;
     z-index: -1;
-    background-image: 
+    background-image:
         url('../img/inicio/nosotros.jpeg'),
         url('../img/inicio/nosotros2.jpeg'),
         url('../img/inicio/nosotros3.jpeg'),
@@ -862,20 +959,20 @@ body::after {
     header {
         height: 85px;
     }
-    
+
     .logo img {
         height: 105px;
         max-width: 220px;
     }
-    
+
     .logo p {
         font-size: 0.8rem;
     }
-    
+
     .hero-content h2 {
         font-size: 3rem;
     }
-    
+
     .hero-content p {
         font-size: 1.2rem;
         max-width: 550px;
@@ -886,7 +983,7 @@ body::after {
     header {
         height: 105px;
     }
-    
+
     .nosotros-img {
         max-width: 100%;
         height: 350px;
@@ -900,26 +997,26 @@ body::after {
     .hero-video {
         object-position: center;
     }
-    
+
     header .container {
         padding: 0 1rem;
     }
-    
+
     .logo {
         align-items: center;
     }
-    
+
     .logo img {
         height: 95px;
         max-width: 180px;
     }
-    
+
     .logo p {
         font-size: 0.75rem;
         text-align: center;
         padding-left: 0;
     }
-    
+
     nav ul {
         display: none;
         flex-direction: column;
@@ -931,138 +1028,138 @@ body::after {
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         padding: 1rem 0 0 0;
     }
-    
+
     nav ul.active {
         display: flex;
     }
-    
+
     nav ul li {
         margin: 0;
         text-align: center;
         padding: 1rem 1rem 1rem 1rem;
         border-bottom: 1px solid #eee;
     }
-    
+
     nav ul li:last-child {
         padding-bottom: 1rem;
         border-bottom: none;
     }
-    
+
     nav ul li a {
         display: block;
         position: relative;
     }
-    
+
     nav ul li a::after {
         margin-left: -5lvh;
         bottom: -1rem;
         left: 0;
         height: 1px;
     }
-    
+
     nav ul li a:hover::after,
     nav ul li a.active::after {
         margin-left: -5lvh;
         width: 150%;
     }
-    
+
     .mobile-menu {
         display: flex;
     }
-    
+
     .hero-content {
         padding: 0 15px;
     }
-    
+
     .hero-content h2 {
         font-size: 2.2rem;
         line-height: 1.3;
         margin-bottom: 1.2rem;
     }
-    
+
     .hero-content p {
         font-size: 1.05rem;
         max-width: 500px;
         margin-bottom: 2rem;
         line-height: 1.5;
     }
-    
+
     .nosotros-content {
         flex-direction: column;
     }
-    
+
     .nosotros-text h2 {
         text-align: center;
     }
-    
+
     .nosotros-stats {
         flex-direction: column;
         gap: 1.5rem;
     }
-    
+
     .productos-grid {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
-    
+
     .producto-img {
         height: 300px;
     }
-    
+
     .footer-content {
         grid-template-columns: 1fr;
         gap: 2.5rem;
     }
-    
+
     .footer-section {
         background: rgba(255, 255, 255, 0.05);
         padding: 1.5rem;
         border-radius: 15px;
         border-left: 3px solid var(--color-naranja);
     }
-    
+
     .footer-section h3,
     .footer-section h4 {
         margin-bottom: 1.2rem;
         font-size: 1.4rem;
         color: white;
     }
-    
+
     .footer-section p {
         font-size: 0.95rem;
         line-height: 1.8;
     }
-    
+
     .footer-section ul {
         display: flex;
         flex-direction: column;
         gap: 0.8rem;
     }
-    
+
     .footer-section ul li a {
         display: block;
         padding: 0.5rem;
         border-radius: 8px;
         transition: all 0.3s;
     }
-    
+
     .footer-section ul li a:hover {
         background: rgba(255, 255, 255, 0.1);
         padding-left: 1rem;
     }
-    
+
     .social-links {
         justify-content: flex-start;
         gap: 10px;
         margin-top: 1.2rem;
         flex-wrap: wrap;
     }
-    
+
     .social-link {
         width: 45px;
         height: 45px;
         font-size: 1.1rem;
     }
-    
+
     .contact-info p {
         background: rgba(255, 255, 255, 0.05);
         padding: 0.8rem;
@@ -1070,63 +1167,65 @@ body::after {
         margin-bottom: 0.8rem;
         font-size: 0.95rem;
     }
-    
+
     .contact-info i {
         width: 25px;
         font-size: 1.1rem;
     }
-    
+
     .newsletter-form {
         flex-direction: column;
         gap: 0.8rem;
         margin-top: 1.2rem;
     }
-    
+
     .newsletter-form input {
         border-radius: 8px;
         padding: 1rem;
         font-size: 0.95rem;
     }
-    
+
     .newsletter-form button {
         border-radius: 8px;
         padding: 1rem;
         font-size: 1rem;
         font-weight: 600;
     }
-    
+
     .footer-bottom {
         padding: 2rem 1rem 1rem;
         font-size: 0.9rem;
         line-height: 1.6;
     }
-    
+
     .modal-content {
         width: 95%;
         margin: 5% auto;
     }
-    
+
     .modal-producto-content {
         flex-direction: column;
     }
-    
-    .modal-producto-img, .modal-producto-info {
+
+    .modal-producto-img,
+    .modal-producto-info {
         min-width: 100%;
     }
-    
+
     .modal-producto-img {
         padding: 2rem;
     }
-    
+
     .modal-producto-img img {
         max-height: 350px;
     }
-    
+
     .modal-actions {
         flex-direction: column;
     }
-    
-    .btn-comprar, .btn-whatsapp {
+
+    .btn-comprar,
+    .btn-whatsapp {
         min-width: 100%;
     }
 }
@@ -1135,48 +1234,48 @@ body::after {
     header {
         height: 90px;
     }
-    
+
     .nosotros-img {
         height: 280px;
     }
-    
+
     .logo img {
         height: 95px;
         max-width: 150px;
         margin-right: 5lvh;
     }
-    
+
     .logo p {
         font-size: 0.7rem;
     }
-    
+
     .hero {
         height: 80vh;
         padding: 0 10px;
     }
-    
+
     .hero-content {
         padding: 0 10px;
     }
-    
+
     .hero-content h2 {
         font-size: 1.8rem;
         line-height: 1.3;
         margin-bottom: 1rem;
     }
-    
+
     .hero-content p {
         font-size: 0.95rem;
         max-width: 100%;
         margin-bottom: 1.8rem;
         line-height: 1.5;
     }
-    
+
     .btn {
         padding: 0.9rem 2rem;
         font-size: 0.95rem;
     }
-    
+
     .producto-img {
         height: 280px;
     }

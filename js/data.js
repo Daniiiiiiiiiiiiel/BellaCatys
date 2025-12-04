@@ -559,6 +559,24 @@ export const productosDB = [
         imagen: "../img2/lote5/producto63.png"
     },
     {
+        id: 64,
+        nombre: "Set Retinol & Ceramides - 4 Piezas",
+        marca: "Nevada",
+        categoria: "",
+        descripcion: "Set completo Nevada con Retinol y Ceramides para cuidado facial anti-edad. Incluye 4 piezas que combaten las arrugas, proporcionan firmeza y mejoran la textura de la piel. El retinol estimula la renovación celular mientras las ceramides fortalecen la barrera cutánea. Sistema completo profesional para una piel rejuvenecida y saludable.",
+        caracteristicas: ["4 piezas", "Retinol", "Ceramides", "Anti-edad", "Renovación celular"],
+        imagen: "../img2/lote5/producto64.jpg"
+    },
+    {
+        id: 65,
+        nombre: "Set Hyaluronic Acid - 3 Piezas",
+        marca: "Nevada",
+        categoria: "",
+        descripcion: "Set Nevada de Ácido Hialurónico con 3 piezas para hidratación profunda. Humecta y restaura la piel proporcionando hidratación intensa desde las capas más profundas. El ácido hialurónico retiene hasta 1000 veces su peso en agua, rellenando arrugas y proporcionando elasticidad. Sistema completo para una piel hidratada, suave y rejuvenecida.",
+        caracteristicas: ["3 piezas", "Ácido Hialurónico", "Hidratación profunda", "Restauración", "Anti-arrugas"],
+        imagen: "../img2/lote5/producto65.jpg"
+    },
+    {
         id: 66,
         nombre: "#TodeCacho Máscara Reparação Fortalecedora",
         marca: "Salon Line",
@@ -566,6 +584,42 @@ export const productosDB = [
         descripcion: "Máscara #TodeCacho de reparación fortalecedora. Tratamiento intensivo que repara y fortalece rizos dañados, debilitados o quebradizos. Reconstruye la fibra capilar, proporciona fuerza y definición. Ideal para rizos que necesitan reparación profunda. Presentación de 300g.",
         caracteristicas: ["300g", "Reparación", "Fortalecedora", "Para rizos", "Tratamiento intensivo"],
         imagen: "../img2/lote6/producto66.png"
+    },
+        {
+        id: 67,
+        nombre: "Set Whitening Skin - 3 Piezas Antimanchas",
+        marca: "Nevada",
+        categoria: "",
+        descripcion: "Set Nevada Whitening Skin de 3 piezas con Arbutina y Niacinamida para tratamiento antimanchas. Aclara, unifica el tono de la piel y reduce manchas oscuras, hiperpigmentación y decoloración. Fórmula avanzada que proporciona luminosidad y un tono de piel uniforme. Ideal para manchas por sol, edad o acné.",
+        caracteristicas: ["3 piezas", "Arbutina", "Niacinamida", "Antimanchas", "Unifica tono"],
+        imagen: "../img2/lote5/producto67.jpg"
+    },
+    {
+        id: 68,
+        nombre: "Set Aloe Vera - 3 Piezas",
+        marca: "Nevada",
+        categoria: "",
+        descripcion: "Set Nevada de Aloe Vera con 3 piezas para suavizar, hidratar y matificar la piel. El aloe vera proporciona hidratación natural, calma irritaciones y controla el brillo. Ideal para todo tipo de piel, especialmente piel sensible o con tendencia grasa. Proporciona frescura, equilibrio y textura sedosa.",
+        caracteristicas: ["3 piezas", "Aloe Vera", "Hidratante", "Matificante", "Calma la piel"],
+        imagen: "../img2/lote5/producto68.jpg"
+    },
+    {
+        id: 69,
+        nombre: "Set Vitamin C - 5 Piezas Anti-Edad",
+        marca: "Nevada",
+        categoria: "",
+        descripcion: "Set Nevada de Vitamina C con 5 piezas y Niacinamida para tratamiento anti-edad completo. Poderoso antioxidante que combate los signos de la edad, ilumina la piel, reduce manchas y estimula la producción de colágeno. Proporciona luminosidad, firmeza y protección contra el daño ambiental. Sistema profesional para una piel radiante.",
+        caracteristicas: ["5 piezas", "Vitamina C", "Niacinamida", "Anti-edad", "Iluminador"],
+        imagen: "../img2/lote5/producto69.jpg"
+    },
+    {
+        id: 70,
+        nombre: "Set Centella Asiática - 4 Piezas",
+        marca: "Nevada",
+        categoria: "",
+        descripcion: "Set Nevada de Centella Asiática con 4 piezas para reparación y calma de la piel. La centella asiática es conocida por sus propiedades cicatrizantes, antiinflamatorias y regeneradoras. Calma pieles sensibles, irritadas o con rojeces, mientras promueve la reparación y fortalecimiento de la barrera cutánea. Incluye banda para cabello.",
+        caracteristicas: ["4 piezas", "Centella Asiática", "Reparadora", "Calma irritaciones", "Con banda"],
+        imagen: "../img2/lote6/producto70.jpg"
     },
     {
         id: 75,

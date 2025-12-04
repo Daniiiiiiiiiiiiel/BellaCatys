@@ -1,5 +1,148 @@
 import { productosDB } from './data.js';
 
+// ========================================
+// LOADING SCREEN LOGIC
+// ========================================
+
+// Function to get all resources to preload
+function getResourcesToPreload() {
+    const resources = [];
+
+    // Videos from hero section
+    const videoConfig = {
+        fondoHero: [
+            'img/inicio/fondo.mp4',
+            'img/inicio/fondo1.mp4',
+            'img/inicio/fondo2.mp4'
+        ]
+    };
+
+    // Images from nosotros section
+    const imageConfig = {
+        nosotros: [
+            'img/inicio/nosotros2.png',
+            'img/inicio/nosotros3.jpeg',
+            'img/inicio/nosotros4.png',
+            'img/inicio/nosotros5.png',
+            'img/inicio/nosotros6.png',
+            'img/inicio/nosotros7.png',
+            'img/inicio/nosotros8.png',
+            'img/inicio/nosotros9.png',
+            'img/inicio/nosotros10.png',
+            'img/inicio/nosotros11.png',
+        ]
+    };
+
+    // Add logo
+    resources.push({ type: 'image', src: 'img/inicio/bellacatys.png' });
+
+    // Add one random video
+    const randomVideo = videoConfig.fondoHero[Math.floor(Math.random() * videoConfig.fondoHero.length)];
+    resources.push({ type: 'video', src: randomVideo });
+
+    // Add one random nosotros image
+    const randomNosotrosImg = imageConfig.nosotros[Math.floor(Math.random() * imageConfig.nosotros.length)];
+    resources.push({ type: 'image', src: randomNosotrosImg });
+
+    // Add product images (limit to first 6 random products)
+    const productosAleatorios = obtenerProductosAleatorios(productosDB, 6);
+    productosAleatorios.forEach(producto => {
+        if (producto.imagen) {
+            resources.push({ type: 'image', src: producto.imagen });
+        }
+    });
+
+    return resources;
+}
+
+// Function to preload a single resource
+function preloadResource(resource) {
+    return new Promise((resolve, reject) => {
+        if (resource.type === 'image') {
+            const img = new Image();
+            img.onload = () => resolve();
+            img.onerror = () => resolve(); // Resolve anyway to not block loading
+            img.src = resource.src;
+        } else if (resource.type === 'video') {
+            const video = document.createElement('video');
+            video.preload = 'auto';
+
+            // Resolve when enough data is loaded
+            video.addEventListener('canplaythrough', () => resolve(), { once: true });
+            video.addEventListener('error', () => resolve(), { once: true }); // Resolve anyway
+
+            // Timeout fallback
+            setTimeout(() => resolve(), 3000);
+
+            video.src = resource.src;
+        }
+    });
+}
+
+// Main loading function
+async function initLoadingScreen() {
+    const loadingScreen = document.getElementById('loading-screen');
+    const progressBar = document.querySelector('.loading-progress-bar');
+    const percentage = document.querySelector('.loading-percentage');
+
+    if (!loadingScreen) return;
+
+    const resources = getResourcesToPreload();
+    let loadedCount = 0;
+
+    // Update progress
+    function updateProgress() {
+        loadedCount++;
+        const progress = Math.round((loadedCount / resources.length) * 100);
+
+        if (progressBar) {
+            progressBar.style.width = `${progress}%`;
+        }
+        if (percentage) {
+            percentage.textContent = `${progress}%`;
+        }
+    }
+
+    // Preload all resources
+    const preloadPromises = resources.map(resource =>
+        preloadResource(resource).then(() => {
+            updateProgress();
+        })
+    );
+
+    // Wait for all resources or timeout after 5 seconds
+    const timeoutPromise = new Promise(resolve => setTimeout(resolve, 5000));
+
+    await Promise.race([
+        Promise.all(preloadPromises),
+        timeoutPromise
+    ]);
+
+    // Ensure progress reaches 100%
+    if (progressBar) progressBar.style.width = '100%';
+    if (percentage) percentage.textContent = '100%';
+
+    // Wait a bit before hiding
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    // Hide loading screen
+    loadingScreen.classList.add('hidden');
+
+    // Remove from DOM after transition
+    setTimeout(() => {
+        if (loadingScreen.parentNode) {
+            loadingScreen.remove();
+        }
+    }, 1000);
+}
+
+// Start loading when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLoadingScreen);
+} else {
+    initLoadingScreen();
+}
+
 // Función para obtener productos aleatorios
 function obtenerProductosAleatorios(array, cantidad) {
     const shuffled = [...array].sort(() => 0.5 - Math.random());
@@ -13,13 +156,13 @@ const productosAleatorios = obtenerProductosAleatorios(productosDB, 6);
 function renderizarProductos() {
     const productosGrid = document.querySelector('.productos-grid');
     if (!productosGrid) return;
-    
+
     productosGrid.innerHTML = '';
-    
+
     productosAleatorios.forEach((producto, index) => {
         const badges = ['Nuevo', 'Más vendido', 'Oferta', ''];
         const badgeAleatorio = badges[Math.floor(Math.random() * badges.length)];
-        
+
         const productoHTML = `
             <div class="producto" data-id="${producto.id}">
                 <div class="producto-img">
@@ -36,43 +179,43 @@ function renderizarProductos() {
                 </div>
             </div>
         `;
-        
+
         productosGrid.innerHTML += productoHTML;
     });
-    
+
     // Re-aplicar event listeners después de renderizar
     aplicarEventListenersProductos();
 }
 
 // Menu móvil
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Renderizar productos aleatorios
     renderizarProductos();
-    
+
     const mobileMenu = document.querySelector('.mobile-menu');
     const navMenu = document.querySelector('nav ul');
-    
+
     if (mobileMenu && navMenu) {
-        mobileMenu.addEventListener('click', function() {
+        mobileMenu.addEventListener('click', function () {
             navMenu.classList.toggle('active');
             mobileMenu.classList.toggle('active');
         });
     }
-    
+
     // Smooth scroll para enlaces internos
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            
+
             const targetId = this.getAttribute('href');
-            if(targetId === '#') return;
-            
+            if (targetId === '#') return;
+
             const targetElement = document.querySelector(targetId);
-            if(targetElement) {
+            if (targetElement) {
                 // Cerrar menú móvil si está abierto
                 if (navMenu) navMenu.classList.remove('active');
                 if (mobileMenu) mobileMenu.classList.remove('active');
-                
+
                 window.scrollTo({
                     top: targetElement.offsetTop - 80,
                     behavior: 'smooth'
@@ -80,12 +223,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     // Cambiar estilo del header al hacer scroll
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         const header = document.querySelector('header');
-        if(header) {
-            if(window.scrollY > 100) {
+        if (header) {
+            if (window.scrollY > 100) {
                 header.style.padding = '10px 0';
                 header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
             } else {
@@ -94,22 +237,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
-    
+
     // Animación al hacer scroll
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-    
-    const observer = new IntersectionObserver(function(entries) {
+
+    const observer = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
-            if(entry.isIntersecting) {
+            if (entry.isIntersecting) {
                 entry.target.style.opacity = 1;
                 entry.target.style.transform = 'translateY(0)';
             }
         });
     }, observerOptions);
-    
+
     // Observar elementos para animación
     document.querySelectorAll('.producto, .nosotros-content').forEach(el => {
         el.style.opacity = 0;
@@ -117,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
         el.style.transition = 'opacity 0.6s, transform 0.6s';
         observer.observe(el);
     });
-    
+
     // Actualizar contador de productos
     const productos_totales = document.getElementsByClassName('stat-number')[0];
     if (productos_totales) {
@@ -131,16 +274,16 @@ function aplicarEventListenersProductos() {
     const closeModal = document.querySelector('.close-modal');
     const modalBody = document.querySelector('.modal-body');
     const productButtons = document.querySelectorAll('.btn-producto');
-    
+
     if (!modal || !closeModal || !modalBody) return;
-    
+
     // Abrir modal con información del producto
     productButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const productId = parseInt(this.closest('.producto').dataset.id);
             const producto = productosDB.find(p => p.id === productId);
-            
-            if(producto) {
+
+            if (producto) {
                 modalBody.innerHTML = `
                     <div class="modal-producto">
                         <div class="modal-producto-header">
@@ -207,14 +350,14 @@ function aplicarEventListenersProductos() {
                         </div>
                     </div>
                 `;
-                
+
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
-                
+
                 // Event listener para botón de WhatsApp
                 const btnComprar = modalBody.querySelector('.btn-comprar');
                 if (btnComprar) {
-                    btnComprar.addEventListener('click', function() {
+                    btnComprar.addEventListener('click', function () {
                         const productoData = JSON.parse(this.dataset.producto);
                         const numero = '50689523778'; // Cambia este número
                         const mensaje = encodeURIComponent(
@@ -232,23 +375,23 @@ function aplicarEventListenersProductos() {
             }
         });
     });
-    
+
     // Cerrar modal
-    closeModal.addEventListener('click', function() {
+    closeModal.addEventListener('click', function () {
         modal.style.display = 'none';
         document.body.style.overflow = 'auto';
     });
-    
-    window.addEventListener('click', function(e) {
-        if(e.target === modal) {
+
+    window.addEventListener('click', function (e) {
+        if (e.target === modal) {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
     });
-    
+
     // Cerrar modal con tecla Escape
-    document.addEventListener('keydown', function(e) {
-        if(e.key === 'Escape' && modal.style.display === 'block') {
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.style.display === 'block') {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
@@ -351,7 +494,7 @@ const imageConfig = {
         '../img/inicio/nosotros9.png',
         '../img/inicio/nosotros10.png',
         '../img/inicio/nosotros11.png',
-        
+
     ],
 
 };
@@ -359,18 +502,18 @@ const imageConfig = {
 // Función para rotar imagen de la sección Nosotros
 function rotateNosotrosImage() {
     const nosotrosImg = document.querySelector('.nosotros-img img');
-    
+
     if (nosotrosImg) {
         const randomImage = getRandomImage(imageConfig.nosotros);
-        
+
         // Aplicar efecto de fade
         nosotrosImg.style.opacity = '0';
-        
+
         setTimeout(() => {
             nosotrosImg.src = randomImage;
             nosotrosImg.style.opacity = '1';
         }, 300);
-        
+
         console.log('Imagen Nosotros cargada:', randomImage);
     }
 }
@@ -378,67 +521,67 @@ function rotateNosotrosImage() {
 // Función para rotar fondo del Hero
 function rotateHeroVideo() {
     const heroSection = document.querySelector('.hero');
-    
+
     if (heroSection) {
         let videoElement = heroSection.querySelector('.hero-video');
         let fadeOverlay = heroSection.querySelector('.hero-video-fade');
-        
+
         if (!videoElement) {
-    const videoContainer = document.createElement('div');
-    videoContainer.className = 'hero-video-container';
-    
-    videoElement = document.createElement('video');
-    videoElement.className = 'hero-video';
-    videoElement.autoplay = true;
-    videoElement.muted = true;
-    videoElement.loop = true;
-    videoElement.playsInline = true;
-    videoElement.playbackRate = 0.75;
-            
+            const videoContainer = document.createElement('div');
+            videoContainer.className = 'hero-video-container';
+
+            videoElement = document.createElement('video');
+            videoElement.className = 'hero-video';
+            videoElement.autoplay = true;
+            videoElement.muted = true;
+            videoElement.loop = true;
+            videoElement.playsInline = true;
+            videoElement.playbackRate = 0.75;
+
             const overlay = document.createElement('div');
             overlay.className = 'hero-video-overlay';
-            
+
             // Overlay adicional para el fade
             fadeOverlay = document.createElement('div');
             fadeOverlay.className = 'hero-video-fade';
-            
+
             videoContainer.appendChild(videoElement);
             videoContainer.appendChild(overlay);
             videoContainer.appendChild(fadeOverlay);
             heroSection.insertBefore(videoContainer, heroSection.firstChild);
         }
-        
+
         const videoConfig = {
             fondoHero: [
                 'img/inicio/fondo.mp4',
-                'img/inicio/fondo1.mp4',
-                'img/inicio/fondo2.mp4'
-                
+                'img/inicio/fondo1.mp4'
+                // 'img/inicio/fondo2.mp4'
+
             ]
         };
-        
+
         const randomVideo = videoConfig.fondoHero[Math.floor(Math.random() * videoConfig.fondoHero.length)];
         heroSection.classList.add('loading');
-        
+
         videoElement.src = randomVideo;
-        
-        videoElement.addEventListener('canplaythrough', function() {
+
+        videoElement.addEventListener('canplaythrough', function () {
             heroSection.classList.remove('loading');
             videoElement.play().catch(error => {
                 console.log('Error al reproducir video:', error);
             });
         }, { once: true });
-        
-        videoElement.addEventListener('error', function() {
+
+        videoElement.addEventListener('error', function () {
             console.error('Error al cargar el video:', randomVideo);
             heroSection.classList.remove('loading');
         }, { once: true });
-        
+
         // Detectar cuando el video está cerca del final para hacer fade
-        videoElement.addEventListener('timeupdate', function() {
+        videoElement.addEventListener('timeupdate', function () {
             const duration = videoElement.duration;
             const currentTime = videoElement.currentTime;
-            
+
             // Fade out en los últimos 0.5 segundos
             if (duration - currentTime < 0.5 && duration - currentTime > 0) {
                 fadeOverlay.style.opacity = '1';
@@ -448,7 +591,7 @@ function rotateHeroVideo() {
                 fadeOverlay.style.opacity = '0';
             }
         });
-        
+
         console.log('Video Hero cargado:', randomVideo);
     }
 }
@@ -502,10 +645,10 @@ escribir();
 
 function createPhoneTooltip() {
     const emailLink = document.querySelector('.dev');
-    
-    emailLink.addEventListener('mouseenter', function() {
+
+    emailLink.addEventListener('mouseenter', function () {
         const rect = this.getBoundingClientRect();
-        
+
         const tooltip = document.createElement('div');
         tooltip.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="white" style="vertical-align: middle; margin-right: 6px;"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> +506 8475 1967';
         tooltip.style.cssText = `
@@ -525,8 +668,8 @@ function createPhoneTooltip() {
         tooltip.id = 'phoneTooltip';
         document.body.appendChild(tooltip);
     });
-    
-    emailLink.addEventListener('mouseleave', function() {
+
+    emailLink.addEventListener('mouseleave', function () {
         const tooltip = document.getElementById('phoneTooltip');
         if (tooltip) tooltip.remove();
     });
