@@ -130,7 +130,7 @@ function renderizarProductos(productos, reiniciar = false) {
         let nombreCategoria = 'Producto';
         if (producto.categoria === 'maquillaje') nombreCategoria = 'Maquillaje';
         else if (producto.categoria === 'skincare') nombreCategoria = 'Skincare';
-        else if (producto.categoria === 'perfumes') nombreCategoria = 'Perfumes';
+        else if (producto.categoria === 'cabello') nombreCategoria = 'Cabello';
 
         return `
         <div class="producto-card" data-id="${producto.id}" data-categoria="${producto.categoria}">
@@ -300,13 +300,7 @@ function filtrarProductos() {
     }
 
     productosFiltrados = productos;
-
-    // Verificar si se seleccionó la categoría "perfumes"
-    if (categoriaSeleccionada === 'perfumes') {
-        mostrarMensajeProximamente();
-    } else {
-        renderizarProductos(productos, true);
-    }
+    renderizarProductos(productos, true);
 }
 
 // Mostrar mensaje "Próximamente" para perfumes
@@ -366,7 +360,7 @@ function mostrarDetalleProducto(id) {
         let nombreCategoria = 'Producto';
         if (producto.categoria === 'maquillaje') nombreCategoria = 'Maquillaje';
         else if (producto.categoria === 'skincare') nombreCategoria = 'Skincare';
-        else if (producto.categoria === 'perfumes') nombreCategoria = 'Perfumes';
+        else if (producto.categoria === 'cabello') nombreCategoria = 'Cabello';
 
         // Actualizar contenido del modal
         document.getElementById('modal-imagen').src = producto.imagen;
