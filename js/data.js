@@ -583,7 +583,7 @@ export const productosDB = [
         categoria: "cabello",
         descripcion: "Máscara #TodeCacho de reparación fortalecedora. Tratamiento intensivo que repara y fortalece rizos dañados, debilitados o quebradizos. Reconstruye la fibra capilar, proporciona fuerza y definición. Ideal para rizos que necesitan reparación profunda. Presentación de 300g.",
         caracteristicas: ["300g", "Reparación", "Fortalecedora", "Para rizos", "Tratamiento intensivo"],
-        imagen: "../img2/lote6/producto66.png"
+        imagen: "../img2/lote5/producto66.png"
     },
     {
         id: 67,
@@ -622,6 +622,42 @@ export const productosDB = [
         imagen: "../img2/lote6/producto70.jpg"
     },
     {
+        id: 71,
+        nombre: "Mascarilla Facial Aloe Vera - Brillo Natural Hidratante",
+        marca: "Nevada",
+        categoria: "skincare",
+        descripcion: "Mascarilla facial Nevada con aloe vera que proporciona brillo natural e hidratación profunda. El aloe vera calma, refresca y nutre la piel mientras proporciona hidratación intensa. Ideal para todo tipo de piel, especialmente piel sensible, irritada o deshidratada. Fórmula suave y natural que deja la piel radiante.",
+        caracteristicas: ["1 unidad", "30g", "Aloe Vera", "Brillo natural", "Hidratante"],
+        imagen: "../img2/lote6/producto71.jpg"
+    },
+    {
+        id: 72,
+        nombre: "Cápsulas Faciales Retinol & Coenzyme Q10 - Renueva y Suaviza",
+        marca: "Nevada",
+        categoria: "skincare",
+        descripcion: "Cápsulas para cuidado facial y corporal Nevada con retinol y coenzima Q10. Fórmula anti-edad que renueva y suaviza la piel. El retinol estimula la renovación celular mientras la coenzima Q10 proporciona antioxidantes poderosos. Tratamiento intensivo que reduce arrugas, mejora textura y revitaliza la piel. 6 cápsulas monodosis.",
+        caracteristicas: ["6 cápsulas", "Retinol", "Coenzima Q10", "Renueva y suaviza", "Rostro y cuerpo"],
+        imagen: "../img2/lote6/producto72.jpg"
+    },
+    {
+        id: 73,
+        nombre: "Cápsulas Faciales Collagen & Hyaluronic Acid - Hidratación y Elasticidad",
+        marca: "Nevada",
+        categoria: "skincare",
+        descripcion: "Cápsulas para cuidado facial y corporal Nevada con colágeno y ácido hialurónico. Proporciona hidratación profunda y elasticidad a la piel. El colágeno mejora la firmeza mientras el ácido hialurónico retiene la humedad. Tratamiento intensivo que rellena arrugas, mejora textura y proporciona juventud a la piel. 6 cápsulas monodosis.",
+        caracteristicas: ["6 cápsulas", "Colágeno", "Ácido Hialurónico", "Hidratación", "Elasticidad"],
+        imagen: "../img2/lote6/producto73.jpg"
+    },
+    {
+        id: 74,
+        nombre: "Mascarillas Contorno de Ojos Whitening Skin - Arbutina y Niacinamida",
+        marca: "Nevada",
+        categoria: "skincare",
+        descripcion: "Mascarillas Nevada para contorno de ojos con arbutina y niacinamida para tratamiento antimanchas. Aclara ojeras, reduce manchas oscuras y unifica el tono alrededor de los ojos. Fórmula especializada que combate hiperpigmentación, proporciona luminosidad y rejuvenece la mirada. Incluye 20 pares (6g x 20 pares).",
+        caracteristicas: ["20 pares", "6g por par", "Arbutina", "Niacinamida", "Antimanchas"],
+        imagen: "../img2/lote6/producto74.jpg"
+    },
+    {
         id: 75,
         nombre: "Set Serum Nevada - Biotina, Ricino y Romero",
         marca: "Nevada",
@@ -629,5 +665,77 @@ export const productosDB = [
         descripcion: "Set de 3 sérums capilares Nevada. Incluye Biotina con Romero (fortalece y estimula crecimiento), Ricino/Castor Oil (nutrición y crecimiento), y Aceite de Ricino con vitaminas (fuerza, prevención de caída y crecimiento). Sistema completo para fortalecer, nutrir y estimular el crecimiento del cabello.",
         caracteristicas: ["Set 3 sérums", "Biotina", "Aceite de Ricino", "Romero", "Crecimiento capilar"],
         imagen: "../img2/lote6/producto75.png"
+    },
+    {
+        id: 76,
+        nombre: "Mascarillas Contorno de Ojos Vitamin C - Vitamina E",
+        marca: "Nevada",
+        categoria: "skincare",
+        descripcion: "Mascarillas Nevada para contorno de ojos con vitamina C y vitamina E. Tratamiento iluminador y antioxidante que reduce ojeras, combate signos de fatiga y proporciona luminosidad. Las vitaminas C y E protegen contra radicales libres, mejoran la circulación y revitalizan la piel delicada del contorno de ojos. Incluye 20 pares (6g x 20 pares).",
+        caracteristicas: ["20 pares", "6g por par", "Vitamina C", "Vitamina E", "Iluminador"],
+        imagen: "../img2/lote6/producto76.jpg"
+    },
+    {
+        id: 77,
+        nombre: "Mascarillas Contorno de Ojos Hyaluronic Acid",
+        marca: "Nevada",
+        categoria: "skincare",
+        descripcion: "Mascarillas Nevada para contorno de ojos con ácido hialurónico. Hidratación profunda que rellena arrugas, reduce bolsas y proporciona elasticidad al área de los ojos. El ácido hialurónico retiene la humedad, mejora la firmeza y suaviza líneas de expresión. Tratamiento intensivo para una mirada rejuvenecida. Incluye 20 pares (6g x 20 pares).",
+        caracteristicas: ["20 pares", "6g por par", "Ácido Hialurónico", "Hidratación profunda", "Anti-arrugas"],
+        imagen: "../img2/lote6/producto77.jpg"
+    },
+    {
+        id: 78,
+        nombre: "Stem Cells Facial Tonic - Limpiador Facial de Células Madres",
+        marca: "Nevada",
+        categoria: "skincare",
+        descripcion: "Tónico facial Nevada con células madres para limpieza profunda. Limpia, purifica y proporciona frescura mientras estimula la renovación celular. Las células madres revitalizan la piel, mejoran textura y promueven una piel radiante. Efecto antibriosa (matificante) para piel radiante. Presentación de 180ml / 6oz.",
+        caracteristicas: ["180ml", "Células Madres", "Limpiador facial", "Purifica", "Efecto matificante"],
+        imagen: "../img2/lote6/producto78.jpg"
+    },
+    {
+        id: 79,
+        nombre: "Cápsulas Faciales Aloe Vera & Vitamin E - Suaviza y Revitaliza",
+        marca: "Nevada",
+        categoria: "skincare",
+        descripcion: "Cápsulas para cuidado facial y corporal Nevada con aloe vera y vitamina E. Suaviza y revitaliza la piel proporcionando hidratación natural y protección antioxidante. El aloe vera calma mientras la vitamina E regenera. Tratamiento que nutre, repara y proporciona suavidad extrema. 6 cápsulas monodosis.",
+        caracteristicas: ["6 cápsulas", "Aloe Vera", "Vitamina E", "Suaviza", "Revitaliza"],
+        imagen: "../img2/lote6/producto79.jpg"
+    },
+    {
+        id: 80,
+        nombre: "Facial Mask Naranja con Ácido Hialurónico - Exfoliante Energizante",
+        marca: "Nevada",
+        categoria: "skincare",
+        descripcion: "Mascarilla facial Nevada de naranja con ácido hialurónico. Tratamiento exfoliante y energizante para pieles grasas. La naranja proporciona vitamina C y antioxidantes que iluminan, mientras el ácido hialurónico hidrata profundamente. Exfolia suavemente, energiza la piel y proporciona luminosidad. Kit incluye mascarilla y serum. 10 unidades.",
+        caracteristicas: ["10 unidades", "Naranja", "Ácido Hialurónico", "Exfoliante", "Para piel grasa"],
+        imagen: "../img2/lote6/producto80.jpg"
+    },
+    {
+        id: 81,
+        nombre: "Mascarillas Contorno de Ojos Aloe Vera",
+        marca: "Nevada",
+        categoria: "skincare",
+        descripcion: "Mascarillas Nevada para contorno de ojos con aloe vera. Calma, hidrata y refresca el área delicada de los ojos. El aloe vera proporciona hidratación natural, reduce inflamación y alivia irritaciones. Ideal para ojos cansados, hinchados o con ojeras. Tratamiento relajante que revitaliza la mirada. Incluye 20 pares (6g x 20 pares).",
+        caracteristicas: ["20 pares", "6g por par", "Aloe Vera", "Calma e hidrata", "Anti-inflamatorio"],
+        imagen: "../img2/lote6/producto81.jpg"
+    },
+    {
+        id: 82,
+        nombre: "Facial Mask Barro Marino con Ácido Hialurónico - Purificante",
+        marca: "Nevada",
+        categoria: "skincare",
+        descripcion: "Mascarilla facial Nevada de barro marino con ácido hialurónico. Tratamiento purificante y revitalizante para pieles grasas. El barro marino limpia profundamente los poros, elimina impurezas y controla el exceso de grasa, mientras el ácido hialurónico hidrata. Desintoxica, purifica y equilibra la piel. 10 unidades.",
+        caracteristicas: ["10 unidades", "Barro Marino", "Ácido Hialurónico", "Purificante", "Para piel grasa"],
+        imagen: "../img2/lote6/producto82.jpg"
+    },
+    {
+        id: 83,
+        nombre: "Black Mask Whitening Fresa - Aclarador Facial Anti-Edad Toner",
+        marca: "Nevada",
+        categoria: "skincare",
+        descripcion: "Mascarilla negra Nevada con extracto de fresa para aclarar y rejuvenecer. Fórmula whitening anti-edad con tóner que aclara manchas, unifica el tono y proporciona luminosidad. La fresa aporta antioxidantes y vitamina C. Ideal para pieles normales. Limpia profundamente, exfolia suavemente y aclara. Presentación de 120g / 4oz.",
+        caracteristicas: ["120g", "Extracto de Fresa", "Whitening", "Anti-edad", "Tóner"],
+        imagen: "../img2/lote6/producto83.jpg"
     }
 ];
